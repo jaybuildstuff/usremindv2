@@ -8,92 +8,86 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <!-- Embedded CSS for direct preview -->
     <style>
-        /* General Styling & Variables */
+        /* New General Styling & Variables */
         :root {
-            /* Light Mode Colors */
-            --background-color: #f0f4f8; /* Light blue-gray */
-            --card-background: #ffffff;
-            --text-color: #333333;
-            --header-color: #1a1a1a;
-            --accent-color-primary: #8e44ad; /* Deep purple */
-            --accent-color-secondary: #2980b9; /* Bright blue */
-            --button-primary-bg: #8e44ad;
-            --button-primary-text: #ffffff;
-            --button-secondary-bg: #ecf0f1;
-            --button-secondary-text: #333333;
-            --nav-button-bg: #ffffff;
-            --nav-button-hover-bg: #f0f4f8;
-            --notification-bg: #f39c12; /* Orange */
-            --notification-text: #ffffff;
-            --modal-overlay-bg: rgba(0, 0, 0, 0.6);
-            --modal-content-bg: #ffffff;
-            --ribbon-color-1: #8e44ad;
-            --ribbon-color-2: #2980b9;
-            --blob-color-1: rgba(142, 68, 173, 0.2); /* Purple with opacity */
-            --blob-color-2: rgba(41, 128, 185, 0.2); /* Blue with opacity */
-            --blob-color-3: rgba(46, 204, 113, 0.2); /* Green with opacity */
-            --blob-color-4: rgba(241, 196, 15, 0.2); /* Yellow with opacity */
-            --custom-cursor-color: #8e44ad;
-            --border-color: #e0e0e0;
+            /* Core Colors */
+            --color-ink: #2B2B2F;
+            --color-cream: #F5EFE6;
+            --color-blue-button: #2D9CFF;
+            --color-tangerine: #FF7A00;
+            --color-mustard: #FFD200;
+            --color-coral: #FF7F41;
+            --color-sky: #27C1F7;
+            --color-leaf: #B6F39A;
+            --color-fuchsia: #FF4FB8;
+
+            /* Text & Backgrounds */
+            --color-text-ink-60: rgba(43,43,47,0.6);
+            --color-text-white-90: rgba(255,255,255,0.9);
+            --color-black-10: rgba(0,0,0,0.1);
+            --color-black-5: rgba(0,0,0,0.05);
+            --color-white-pattern-blob: rgba(255,255,255,0.4);
+
+            /* Modal & Banner */
+            --color-modal-overlay-bg: rgba(0, 0, 0, 0.02);
+            --color-modal-bg: #ffffff;
+            --color-birthday-banner-bg: #FFD700;
+            --color-birthday-banner-text: #8B4513;
         }
 
-        /* Dark Mode Variables */
-        body.dark-mode {
-            --background-color: #1a202c; /* Dark blue-gray */
-            --card-background: #2d3748;
-            --text-color: #e2e8f0;
-            --header-color: #edf2f7;
-            --accent-color-primary: #bd93f9; /* Lighter purple for dark mode */
-            --accent-color-secondary: #8be9fd; /* Lighter blue for dark mode */
-            --button-primary-bg: #bd93f9;
-            --button-primary-text: #1a202c;
-            --button-secondary-bg: #4a5568;
-            --button-secondary-text: #edf2f7;
-            --nav-button-bg: #2d3748;
-            --nav-button-hover-bg: #4a5568;
-            --notification-bg: #d68100; /* Darker orange */
-            --notification-text: #ffffff;
-            --modal-overlay-bg: rgba(0, 0, 0, 0.8);
-            --modal-content-bg: #2d3748;
-            --ribbon-color-1: #bd93f9;
-            --ribbon-color-2: #8be9fd;
-            --blob-color-1: rgba(189, 147, 249, 0.15);
-            --blob-color-2: rgba(139, 233, 253, 0.15);
-            --blob-color-3: rgba(80, 250, 123, 0.15);
-            --blob-color-4: rgba(255, 184, 108, 0.15);
-            --custom-cursor-color: #bd93f9;
-            --border-color: #4a5568;
+        html.dark-mode {
+            --color-ink: #F5F5F5;
+            --color-cream: #2B2B2F;
+            --color-blue-button: #4DAAFF;
+            --color-modal-bg: #2A2A2A;
+            --color-white-pattern-blob: rgba(255,255,255,0.1);
+            --color-text-ink-60: rgba(255,255,255,0.6);
+            --color-text-white-90: rgba(255,255,255,0.9);
+            --color-black-10: rgba(255,255,255,0.1);
+            /* Ensure all color variables are explicitly redefined or fallback gracefully */
+            --color-tangerine: #FF7A00;
+            --color-mustard: #FFD200;
+            --color-coral: #FF7F41;
+            --color-sky: #27C1F7;
+            --color-leaf: #B6F39A;
+            --color-fuchsia: #FF4FB8;
+            --color-birthday-banner-bg: #DAA520;
+            --color-birthday-banner-text: #FFFFFF;
         }
 
         /* Base Styles */
-        * {
-            box-sizing: border-box;
+        body {
             margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            height: 100%;
             font-family: 'Poppins', sans-serif;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            background: linear-gradient(135deg, var(--color-cream), var(--color-sky), var(--color-blue-button));
+            background-size: 400% 400%;
+            animation: gradient-animation 20s ease infinite;
+            color: var(--color-ink);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
 
-        a {
-            text-decoration: none;
-            color: var(--accent-color-primary);
+        /* Added for no-scroll on body when modal/card is open */
+        body.no-scroll {
+            overflow: hidden;
         }
 
-        ul {
-            list-style: none;
+        /* Gradient Animation */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
         }
 
         /* Typography */
         h1, h3, h4 {
             font-family: 'Lora', serif;
-            color: var(--header-color);
+            color: var(--color-ink);
         }
 
         h1 {
@@ -118,7 +112,16 @@
             margin-bottom: 0.8rem;
         }
 
-        /* Ribbons Decoration */
+        a {
+            text-decoration: none;
+            color: var(--color-blue-button);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Ribbons Decoration (keeping previous ribbon styles, adjust colors to new palette if needed) */
         .ribbon-decoration {
             position: fixed;
             top: 0;
@@ -134,7 +137,7 @@
             position: absolute;
             width: 150vw; /* Wider than viewport */
             height: 80px;
-            background-color: var(--ribbon-color-1);
+            background-color: var(--color-tangerine);
             transform: rotate(-10deg);
             top: -40px;
             left: -50vw;
@@ -143,7 +146,7 @@
         }
 
         .ribbon-2 {
-            background-color: var(--ribbon-color-2);
+            background-color: var(--color-coral);
             transform: rotate(15deg);
             top: -20px;
             left: -20vw;
@@ -156,7 +159,7 @@
             left: 20px;
             font-family: 'Lora', serif;
             font-size: 8rem;
-            color: var(--text-color);
+            color: var(--color-ink);
             opacity: 0.05;
             z-index: -1;
             pointer-events: none;
@@ -167,19 +170,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 2rem;
+            padding: 0;
             position: relative;
-            z-index: 1; /* Above ribbons */
+            z-index: 1;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .main-card {
-            background-color: var(--card-background);
+            background-color: var(--color-modal-bg);
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            max-width: 1200px;
             width: 100%;
-            overflow: hidden; /* For rounded corners */
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -189,7 +192,7 @@
             padding: 2.5rem 3.5rem;
         }
 
-        /* Pattern Blobs */
+        /* Pattern Blobs (adjusted colors to new palette) */
         .pattern-blobs {
             position: absolute;
             top: 0;
@@ -205,30 +208,30 @@
             position: absolute;
             border-radius: 50%;
             opacity: 0.7;
-            filter: blur(80px); /* Soften the edges */
+            filter: blur(80px);
             transition: background-color 0.3s ease;
         }
 
         .blob-1 {
-            background: var(--blob-color-1);
+            background: var(--color-fuchsia);
             width: 300px; height: 300px;
             top: 10%; left: 5%;
             animation: blob-move 15s infinite alternate ease-in-out;
         }
         .blob-2 {
-            background: var(--blob-color-2);
+            background: var(--color-leaf);
             width: 250px; height: 250px;
             top: 70%; right: 10%;
             animation: blob-move 18s infinite alternate-reverse ease-in-out;
         }
         .blob-3 {
-            background: var(--blob-color-3);
+            background: var(--color-tangerine);
             width: 200px; height: 200px;
             bottom: 5%; left: 30%;
             animation: blob-move 12s infinite alternate ease-in-out;
         }
         .blob-4 {
-            background: var(--blob-color-4);
+            background: var(--color-mustard);
             width: 350px; height: 350px;
             top: 20%; right: 25%;
             animation: blob-move 20s infinite alternate-reverse ease-in-out;
@@ -246,37 +249,46 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            width: 100%;
+            border-bottom: 1px solid var(--color-black-10);
             margin-bottom: 3rem;
         }
 
         .logo-group {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
         .logo-icon {
-            width: 30px;
-            height: 30px;
-            background-color: var(--accent-color-primary); /* Placeholder for an actual logo/icon */
-            border-radius: 8px;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.75rem;
+            background: linear-gradient(to bottom right, var(--color-mustard), var(--color-coral));
         }
 
         .logo-text {
-            font-family: 'Lora', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--header-color);
+            font-weight: 600;
+            font-size: 1.125rem;
+            color: var(--color-ink);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
         }
 
         .nav-links a {
-            margin: 0 1rem;
-            color: var(--text-color);
-            font-weight: 600;
+            color: var(--color-ink);
+            text-decoration: none;
+            opacity: 0.8;
             position: relative;
-            transition: color 0.3s ease;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
         }
 
         .nav-links a::after {
@@ -284,7 +296,7 @@
             position: absolute;
             width: 0;
             height: 2px;
-            background-color: var(--accent-color-primary);
+            background-color: var(--color-blue-button);
             left: 0;
             bottom: -5px;
             transition: width 0.3s ease-in-out;
@@ -294,9 +306,15 @@
             width: 100%;
         }
 
-        .nav-buttons {
+        /* Fixed Top Right Buttons */
+        .fixed-top-right-buttons {
+            position: fixed;
+            top: 2rem; /* Adjust as needed */
+            right: 2rem; /* Adjust as needed */
+            z-index: 1000; /* Ensure it's above most content */
             display: flex;
             gap: 0.8rem;
+            align-items: center;
         }
 
         .fixed-action-btn {
@@ -304,8 +322,8 @@
             height: 45px;
             border-radius: 50%;
             border: none;
-            background-color: var(--nav-button-bg);
-            color: var(--text-color);
+            background-color: var(--color-cream);
+            color: var(--color-ink);
             font-size: 1.2rem;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
@@ -313,7 +331,7 @@
         }
 
         .fixed-action-btn:hover {
-            background-color: var(--nav-button-hover-bg);
+            background-color: var(--color-black-5);
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
@@ -321,44 +339,163 @@
         /* Hero Section */
         .hero-section {
             text-align: center;
+            padding: 2rem;
             max-width: 800px;
             margin: 0 auto;
-            padding: 3rem 0;
         }
 
         .hero-headline {
-            color: var(--accent-color-primary);
-            font-size: 3.5rem;
-            font-weight: 700;
-            letter-spacing: -0.05em;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: var(--color-ink);
         }
 
         .hero-subtext {
-            font-size: 1.2rem;
-            color: var(--text-color);
-            line-height: 1.5;
-            margin-top: 1rem;
+            font-size: 1.125rem;
+            opacity: 0.6;
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--color-ink);
         }
 
         .daily-message-display {
             font-size: 1.1rem;
             margin: 1.5rem 0;
             font-style: italic;
-            color: var(--text-color);
+            color: var(--color-text-ink-60);
         }
+
+        /* Utility classes for flexbox and margin-top, gap */
+        .flex { display: flex; }
+        .justify-center { justify-content: center; }
+        .gap-4 { gap: 1rem; /* Equivalent to 16px */ }
+        .mt-4 { margin-top: 1rem; /* Equivalent to 16px */ }
+        .inline-block { display: inline-block; }
+        .text-xs { font-size: 0.75rem; /* Equivalent to 12px */ }
+        .font-semibold { font-weight: 600; }
+        .bg-white\/20 { background-color: rgba(255, 255, 255, 0.2); }
+        .text-white { color: #ffffff; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+        .rounded-full { border-radius: 9999px; }
 
 
         /* Main Grid Section (Placeholders for cards) */
         .main-grid-section {
-            padding-top: 2.5rem;
-            padding-bottom: 2.5rem;
+            padding: 2rem 0;
         }
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
+            padding: 0 3.5rem;
         }
+
+        /* Cards */
+        .card {
+            background-color: var(--color-modal-bg); /* Use modal background for cards */
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Add color transition */
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            color: var(--color-ink); /* Default card text color (dark in light mode, light in dark mode) */
+        }
+
+        /* Ensure text inside generic cards also follows the theme's ink color */
+        .card h3, .card p {
+            color: var(--color-ink);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.15);
+        }
+
+        /* Card specific background colors */
+        .card.bg-coral {
+            background: linear-gradient(135deg, var(--color-coral), var(--color-tangerine));
+            color: var(--color-text-white-90); /* Text color for coral card */
+        }
+        .card.bg-coral h4, .card.bg-coral .text, .card.bg-coral p {
+            color: var(--color-text-white-90); /* Ensure all text within coral card is white */
+        }
+
+        /* Dark mode specific for cards */
+        html.dark-mode .card {
+            background-color: var(--color-modal-bg); /* Already defined as dark grey in dark mode */
+            color: var(--color-ink); /* Already defined as light text in dark mode */
+            box-shadow: 0 12px 24px rgba(255,255,255,0.08); /* Lighter shadow for dark mode */
+        }
+
+        /* Card expanded state */
+        .card.is-expanded {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.05);
+            z-index: 2000;
+            width: 90%;
+            max-width: 700px;
+            height: auto;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 3rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            cursor: zoom-out;
+        }
+
+        /* Card Expansion Overlay */
+        .card-expansion-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent dark overlay */
+            z-index: 1999; /* Below expanded card, above other content */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .card-expansion-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        /* Weather Widget Specific Styles */
+        .weather-widget-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .weather-widget-content .icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            transition: transform 0.3s ease;
+            color: var(--color-text-white-90); /* Icon color */
+        }
+
+        .weather-widget-content:hover .icon {
+            transform: scale(1.1);
+        }
+
+        .weather-widget-content .text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--color-text-white-90); /* Text color */
+        }
+
 
         /* Notification Banner */
         .notification-banner {
@@ -366,31 +503,17 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: var(--notification-bg);
-            color: var(--notification-text);
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            font-weight: 600;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transform: translateY(-100%); /* Start off-screen */
-            transition: transform 0.5s ease-out;
+            text-align: center;
+            padding: 10px;
+            background-color: var(--color-birthday-banner-bg);
+            color: var(--color-birthday-banner-text);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: none;
             z-index: 1000;
         }
 
         .notification-banner.show {
-            transform: translateY(0);
-        }
-
-        .notification-banner button {
-            background: none;
-            border: none;
-            color: var(--notification-text);
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-left: auto;
+            display: block;
         }
 
         /* Custom Message Box */
@@ -398,9 +521,9 @@
             position: fixed;
             bottom: 2rem;
             left: 50%;
-            transform: translateX(-50%) translateY(100%); /* Start off-screen */
-            background-color: var(--card-background);
-            color: var(--text-color);
+            transform: translateX(-50%) translateY(100%);
+            background-color: var(--color-modal-bg);
+            color: var(--color-ink);
             padding: 0.8rem 1.5rem;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -422,38 +545,35 @@
 
         .message-box #customMessageIcon {
             font-size: 1.5rem;
-            color: var(--accent-color-primary);
+            color: var(--color-tangerine);
         }
 
         /* Modals */
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--modal-overlay-bg);
+            inset: 0;
+            background: var(--color-modal-overlay-bg);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
-            visibility: hidden;
+            z-index: 2000;
             opacity: 0;
+            visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        .modal-overlay.active {
-            visibility: visible;
+        .modal-overlay.show {
             opacity: 1;
+            visibility: visible;
         }
 
         .modal-content {
-            background-color: var(--modal-content-bg);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-            max-width: 600px;
+            background: var(--color-modal-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 500px;
             width: 90%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
             position: relative;
             transform: translateY(-20px);
             transition: transform 0.3s ease, background-color 0.3s ease;
@@ -461,86 +581,112 @@
             overflow-y: auto;
         }
 
-        .modal-overlay.active .modal-content {
+        .modal-overlay.show .modal-content {
             transform: translateY(0);
         }
 
         .modal-close-btn {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 1rem;
+            right: 1rem;
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: var(--text-color);
             cursor: pointer;
+            color: var(--color-ink);
             transition: color 0.3s ease;
         }
 
         .modal-close-btn:hover {
-            color: var(--accent-color-primary);
+            color: var(--color-blue-button);
         }
 
         .modal-body {
             padding-top: 1rem;
         }
 
-        .memory-item {
-            background-color: var(--background-color);
-            border-left: 4px solid var(--accent-color-secondary);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            transition: background-color 0.3s ease;
+        /* Memory Timeline Styles */
+        .memory-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 1rem 0;
+            border-left: 3px solid var(--color-blue-button);
+            margin-left: 1rem;
         }
 
-        .memory-item h4 {
-            margin-bottom: 0.5rem;
-            color: var(--header-color);
-        }
-
-        .memory-item span {
-            font-size: 0.9rem;
-            color: var(--text-color);
-            opacity: 0.8;
-        }
-
-        .modal-body ul {
-            list-style: disc;
+        .memory-entry {
+            position: relative;
             padding-left: 1.5rem;
-            margin-bottom: 1rem;
         }
 
-        .modal-body ul li {
-            margin-bottom: 0.5rem;
+        .memory-entry::before {
+            content: '';
+            position: absolute;
+            left: -0.75rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--color-blue-button);
+            border-radius: 50%;
         }
 
-        .modal-body a {
-            color: var(--accent-color-primary);
-            text-decoration: underline;
+        .memory-date {
+            font-size: 0.875rem;
+            color: var(--color-text-ink-60);
+            margin-bottom: 0.25rem;
         }
+
+        .memory-content h4 {
+            margin: 0;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-ink);
+        }
+
+        .memory-content p {
+            margin: 0.5rem 0 0;
+            font-size: 0.95rem;
+            color: var(--color-text-ink-60);
+        }
+
+        html.dark-mode .memory-timeline {
+            border-left-color: var(--color-blue-button);
+        }
+
+        html.dark-mode .memory-entry::before {
+            background-color: var(--color-blue-button);
+        }
+
+        html.dark-mode .memory-content h4,
+        html.dark-mode .memory-content p {
+            color: var(--color-text-white-90);
+        }
+
 
         /* Footer Strip */
         .footer-strip-section {
-            background-color: var(--background-color);
+            background-color: transparent;
             padding: 2rem 3.5rem;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid var(--color-black-10);
             margin-top: 3rem;
             transition: background-color 0.3s ease, border-color 0.3s ease;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .footer-strip {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            flex-wrap: wrap;
             gap: 1.5rem;
         }
 
         .footer-text {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--header-color);
+            color: var(--color-ink);
         }
 
         .footer-buttons {
@@ -559,86 +705,102 @@
         }
 
         .footer-button-primary {
-            background-color: var(--button-primary-bg);
-            color: var(--button-primary-text);
+            background-color: var(--color-blue-button);
+            color: var(--color-text-white-90);
             border: none;
         }
 
         .footer-button-primary:hover {
-            background-color: var(--accent-color-primary);
-            filter: brightness(1.1); /* Slightly brighter on hover */
+            background-color: var(--color-blue-button);
+            filter: brightness(1.1);
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
 
         .footer-button-secondary {
-            background-color: var(--button-secondary-bg);
-            color: var(--button-secondary-text);
-            border: 1px solid var(--border-color);
+            background-color: var(--color-cream);
+            color: var(--color-ink);
+            border: 1px solid var(--color-black-10);
         }
 
         .footer-button-secondary:hover {
-            background-color: var(--button-secondary-text); /* Swap colors on hover */
-            color: var(--button-secondary-bg);
+            background-color: var(--color-ink);
+            color: var(--color-cream);
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
 
         /* Custom Cursor */
         .custom-cursor {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 2px solid var(--custom-cursor-color);
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            background-color: var(--color-ink);
+            border-radius: 50%;
             pointer-events: none;
-            z-index: 9999;
             transform: translate(-50%, -50%);
-            transition: transform 0.1s ease-out; /* Smooth follow */
-            display: none; /* Hidden by default, shown by JS, so it won't show without JS */
+            transition: transform 0.05s ease-out;
+            z-index: 9999;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
         }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
             .main-card-wrapper {
-                padding: 1rem;
+                padding: 0;
             }
 
             .main-card {
-                margin: 1rem; /* Add some margin around the card */
+                margin: 0;
             }
 
             .section-container {
-                padding: 2rem;
+                padding: 1.5rem 2rem;
             }
 
             .main-nav {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 1.5rem;
+                gap: 1rem;
+                padding: 1rem;
+                margin-bottom: 2rem;
             }
 
             .nav-links {
                 width: 100%;
                 display: flex;
                 justify-content: space-around;
+                flex-wrap: wrap;
+                gap: 0.5rem;
             }
 
             .nav-links a {
                 margin: 0 0.5rem;
             }
 
-            .nav-buttons {
-                width: 100%;
-                justify-content: center;
+            /* Adjust fixed buttons for smaller screens */
+            .fixed-top-right-buttons {
+                top: 1rem;
+                right: 1rem;
+                gap: 0.5rem;
             }
 
             .hero-headline {
-                font-size: 2.8rem;
+                font-size: 2.2rem;
             }
 
             .hero-subtext {
-                font-size: 1.1rem;
+                font-size: 1rem;
+            }
+
+            .grid-container {
+                padding: 0 2rem;
+            }
+
+            .footer-strip-section {
+                padding: 1.5rem 2rem;
             }
 
             .footer-strip {
@@ -650,7 +812,7 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
 
             h3 {
@@ -658,29 +820,29 @@
             }
 
             .hero-headline {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
 
             .hero-subtext {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
 
             .section-container {
-                padding: 1.5rem;
+                padding: 1rem 1.5rem;
             }
 
             .main-nav {
-                margin-bottom: 2rem;
+                margin-bottom: 1.5rem;
             }
 
             .fixed-action-btn {
-                width: 40px;
-                height: 40px;
+                width: 38px;
+                height: 38px;
                 font-size: 1rem;
             }
 
             .logo-text {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
 
             .modal-content {
@@ -688,7 +850,7 @@
             }
 
             .footer-strip-section {
-                padding: 1.5rem;
+                padding: 1rem 1.5rem;
             }
 
             .footer-buttons {
@@ -715,25 +877,65 @@
             .slash-text {
                 font-size: 5rem;
             }
+            .custom-cursor {
+                display: none;
+            }
+
+            /* Timeline adjustments for smaller screens */
+            .memory-timeline {
+                margin-left: 0.5rem; /* Adjust margin for smaller screens */
+            }
+            .memory-timeline::before {
+                left: 5px; /* Adjust to align with date circles */
+            }
+            .memory-entry {
+                padding-left: 25px; /* Space for date and circle */
+            }
+            .memory-entry::before {
+                left: -0.5rem; /* Adjust circle position */
+                width: 0.8rem;
+                height: 0.8rem;
+                top: 0.6rem;
+            }
+            .memory-date {
+                font-size: 0.8rem;
+            }
+            .memory-content h4 {
+                font-size: 1rem;
+            }
+            .memory-content p {
+                font-size: 0.85rem;
+            }
+
+            .fixed-top-right-buttons {
+                top: 0.5rem;
+                right: 0.5rem;
+                gap: 0.3rem;
+            }
+            .fixed-action-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             h3 {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
 
             .hero-headline {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
 
             .nav-links {
                 flex-direction: column;
-                gap: 0.8rem;
-                align-items: flex-start;
+                gap: 0.6rem;
+                align-items: center;
             }
 
             .nav-links a {
@@ -745,11 +947,11 @@
             }
 
             .hero-section {
-                padding: 2rem 0;
+                padding: 1.5rem 0;
             }
 
-            .main-card-wrapper {
-                padding: 0.5rem;
+            body {
+                padding: 1rem;
             }
 
             .main-card {
@@ -758,11 +960,11 @@
 
             .notification-banner {
                 padding: 0.6rem 1rem;
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
 
             .notification-banner button {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
 
             .message-box {
@@ -773,7 +975,7 @@
                 text-align: center;
             }
             .message-box #customMessageIcon {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .modal-content {
@@ -789,7 +991,7 @@
                 padding: 1rem;
             }
             .footer-text {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -848,19 +1050,38 @@
         <div class="modal-content">
             <button class="modal-close-btn"><i class="fas fa-times"></i></button>
             <h3>Our Memories</h3>
-            <div class="modal-body" id="memoriesContent">
-                <p>This is where your shared memories will live. Imagine a timeline of all the special moments you've captured together!</p>
-                <div class="memory-item">
-                    <h4>First Anniversary!</h4>
-                    <p>Remember that amazing trip to the mountains? The sunset was incredible!</p>
-                    <span>Date: 2023-07-15</span>
+            <div class="modal-body">
+                <div class="memory-timeline">
+                    <div class="memory-entry">
+                        <div class="memory-date">2023-07-24</div>
+                        <div class="memory-content">
+                            <h4>First Birthday Surprise</h4>
+                            <p>Jay surprised Mah with a handwritten letter and a playlist of favorite songs.</p>
+                        </div>
+                    </div>
+                    <div class="memory-entry">
+                        <div class="memory-date">2024-02-14</div>
+                        <div class="memory-content">
+                            <h4>Valentine’s Day Walk</h4>
+                            <p>We walked through the canals of Amsterdam and shared stroopwafels under the stars.</p>
+                        </div>
+                    </div>
+                    <!-- Add more entries as needed -->
+                    <div class="memory-entry">
+                        <div class="memory-date">2024-05-01</div>
+                        <div class="memory-content">
+                            <h4>Spring Picnic</h4>
+                            <p>Enjoyed a lovely picnic in the park, watching the cherry blossoms. It was a perfect day!</p>
+                        </div>
+                    </div>
+                    <div class="memory-entry">
+                        <div class="memory-date">2024-06-10</div>
+                        <div class="memory-content">
+                            <h4>Concert Night</h4>
+                            <p>Attended our favorite band's concert. The energy was incredible!</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="memory-item">
-                    <h4>Movie Night</h4>
-                    <p>Our first movie night watching 'Stardust' under the stars. So cozy!</p>
-                    <span>Date: 2022-11-01</span>
-                </div>
-                <!-- More memories will be dynamically loaded here -->
             </div>
         </div>
     </div>
@@ -888,6 +1109,15 @@
         </div>
     </div>
 
+    <!-- Card Expansion Overlay -->
+    <div id="cardExpansionOverlay" class="card-expansion-overlay"></div>
+
+    <!-- Fixed Action Buttons (Theme, Birthday, Calendar) -->
+    <div class="fixed-top-right-buttons">
+        <button id="themeToggleBtn" class="fixed-action-btn theme-toggle-btn" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button id="birthdayInfoBtn" class="fixed-action-btn birthday-info-btn" data-modal-target="upcomingBirthdaysModal" aria-label="Birthdays"><i class="fas fa-birthday-cake"></i></button>
+        <button id="calendarInfoBtn" class="fixed-action-btn calendar-info-btn" data-modal-target="calendarModal" aria-label="Calendar"><i class="fas fa-calendar-alt"></i></button>
+    </div>
 
     <!-- Main Content -->
     <main class="main-card-wrapper">
@@ -912,19 +1142,17 @@
                         <a href="#" data-modal-target="aboutModal">About</a>
                         <a href="#" data-modal-target="helpModal">Help</a>
                     </nav>
-                    <div class="nav-buttons">
-                        <button id="themeToggleBtn" class="fixed-action-btn theme-toggle-btn" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-                        <button id="birthdayInfoBtn" class="fixed-action-btn birthday-info-btn" data-modal-target="upcomingBirthdaysModal" aria-label="Birthdays"><i class="fas fa-birthday-cake"></i></button>
-                        <button id="calendarInfoBtn" class="fixed-action-btn calendar-info-btn" data-modal-target="calendarModal" aria-label="Calendar"><i class="fas fa-calendar-alt"></i></button>
-                    </div>
                 </header>
 
                 <div class="hero-section">
                     <h1 class="hero-headline">REMEMBER THE LITTLE THINGS</h1>
                     <p class="hero-subtext">A shared reminder space for two people who care about each other a lot.</p>
-                    <!-- New element for daily message (for the share button) -->
-                    <p id="dailyMessageSpan" class="daily-message-display">"Every moment spent together is a treasure."</p>
-                    <button id="shareBtn" class="footer-button-secondary"><i class="fas fa-share-alt"></i> Share Message</button>
+                    <!-- Updated element for daily message (for the share button) -->
+                    <p id="dailyMessage" class="daily-message-display">"Every moment spent together is a treasure."</p>
+                    <div class="flex justify-center gap-4 mt-4">
+                        <button id="copyBtn" class="footer-button-secondary"><i class="fas fa-copy"></i> Copy Message</button>
+                        <button id="shareBtn" class="footer-button-secondary"><i class="fas fa-share-alt"></i> Share Message</button>
+                    </div>
                 </div>
             </div>
 
@@ -932,7 +1160,23 @@
             <div class="section-container" id="gridAndFooterSection">
                 <section class="main-grid-section">
                     <div class="grid-container">
-                        <!-- Cards will be inserted here -->
+                        <!-- Placeholder Card for testing expansion -->
+                        <div class="card">
+                            <h3>Welcome to your first card!</h3>
+                            <p>Click me to see the expansion effect. This is where your important reminders and notes will go.</p>
+                            <button class="footer-button-primary">View Details</button>
+                        </div>
+
+                        <!-- Weather Widget Card -->
+                        <div class="card bg-coral" id="weatherCard">
+                            <span class="inline-block text-xs font-semibold bg-white/20 text-white px-3 py-1 rounded-full">Daily Info</span>
+                            <h4 class="card-title text-white mt-3">Weather Widget</h4>
+                            <div class="weather-widget-content">
+                                <i class="fas fa-sync-alt fa-spin icon"></i> <!-- Loading icon -->
+                                <div class="text" id="weatherText">Loading weather...</div>
+                            </div>
+                        </div>
+
                     </div>
                 </section>
 
@@ -953,176 +1197,483 @@
     <div class="custom-cursor"></div>
 
     <script>
-        // Placeholder for showMessage function (referencing customMessageBox in HTML)
-        function showMessage(message, type = 'info') {
-            const messageBox = document.getElementById('customMessageBox');
-            const messageText = document.getElementById('customMessageText');
-            const messageIcon = document.getElementById('customMessageIcon');
+        // --- Constants ---
+        const messages = [
+            "You’re doing great.",
+            "Don’t forget to hydrate.",
+            "One kind word can change someone’s day.",
+            "You’re loved more than you know.",
+            "Take a deep breath. You’ve got this."
+        ];
 
-            if (messageBox && messageText && messageIcon) {
-                messageText.textContent = message;
-                // Basic icon based on type
-                if (type === 'error') {
-                    messageIcon.className = 'fas fa-exclamation-circle';
-                } else if (type === 'success') {
-                    messageIcon.className = 'fas fa-check-circle';
-                } else { // info
-                    messageIcon.className = 'fas fa-info-circle';
-                }
+        // Adjusted month to be 0-indexed (July is 6, November is 10)
+        const birthdays = [
+            { name: "Jay", month: 6, day: 24 },
+            { name: "Mah", month: 10, day: 3 }
+        ];
 
-                messageBox.classList.add('show');
-                setTimeout(() => {
-                    messageBox.classList.remove('show');
-                }, 3000); // Hide after 3 seconds
+        // Open-Meteo API Configuration
+        // Open-Meteo typically does not require an API key for non-commercial use.
+        // If you need one for commercial use or higher limits, refer to their pricing.
+        const DEFAULT_LAT = 39.599346; // Default latitude for Kentucky
+        const DEFAULT_LON = -87.61579; // Default longitude for Kentucky
+
+        // --- Weather Functions (Open-Meteo) ---
+        function mapWeatherIcon(code) {
+            // WMO Weather interpretation codes (WW) from Open-Meteo documentation
+            // https://open-meteo.com/en/docs/ecmwf-api#weather-code
+            switch (code) {
+                case 0: return 'fa-sun'; // Clear sky
+                case 1: return 'fa-cloud-sun'; // Mainly clear
+                case 2: return 'fa-cloud'; // Partly cloudy
+                case 3: return 'fa-cloud'; // Overcast
+                case 45:
+                case 48: return 'fa-smog'; // Fog and depositing rime fog
+                case 51:
+                case 53:
+                case 55: return 'fa-cloud-showers-heavy'; // Drizzle
+                case 56:
+                case 57: return 'fa-cloud-showers-heavy'; // Freezing Drizzle
+                case 61:
+                case 63:
+                case 65: return 'fa-cloud-rain'; // Rain
+                case 66:
+                case 67: return 'fa-cloud-rain'; // Freezing Rain
+                case 71:
+                case 73:
+                case 75: return 'fa-snowflake'; // Snow fall
+                case 77: return 'fa-snowflake'; // Snow grains
+                case 80:
+                case 81:
+                case 82: return 'fa-cloud-showers-heavy'; // Rain showers
+                case 85:
+                case 86: return 'fa-snowflake'; // Snow showers
+                case 95:
+                case 96:
+                case 99: return 'fa-bolt'; // Thunderstorm
+                default: return 'fa-question-circle'; // Fallback for unknown codes
             }
         }
 
-        // Placeholder for expandCard function
-        function expandCard(cardElement) {
-            console.log('Card clicked and would expand:', cardElement);
-            // Here you would add logic to expand the card, e.g., show a modal with more details.
-            showMessage('Card expansion not yet implemented!', 'info');
-        }
+        async function fetchWeather(lat, lon) {
+            const weatherText = document.getElementById('weatherText');
+            const icon = document.querySelector('#weatherCard .icon');
 
-        // Event listener for theme toggle button
-        const themeToggleBtn = document.getElementById('themeToggleBtn');
-        if (themeToggleBtn) {
-            themeToggleBtn.addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-                // Optional: Store preference in localStorage
-                if (document.body.classList.contains('dark-mode')) {
-                    localStorage.setItem('theme', 'dark');
-                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            if (!weatherText || !icon) return;
+
+            // Show loading state
+            weatherText.textContent = 'Loading weather...';
+            icon.className = 'fas fa-sync-alt fa-spin icon';
+
+            // Open-Meteo API URL
+            // Request hourly temperature_2m and weathercode
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode&temperature_unit=celsius&timezone=auto`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                if (data.hourly && data.hourly.time && data.hourly.temperature_2m && data.hourly.weathercode) {
+                    const currentTime = new Date();
+                    const currentHour = currentTime.getHours();
+                    const todayDate = currentTime.toISOString().split('T')[0]; // YYYY-MM-DD
+
+                    let currentHourIndex = -1;
+                    // Find the index that matches the current hour for today
+                    for (let i = 0; i < data.hourly.time.length; i++) {
+                        const dateTime = new Date(data.hourly.time[i]);
+                        // Ensure we match both date and hour
+                        if (dateTime.toISOString().split('T')[0] === todayDate && dateTime.getHours() === currentHour) {
+                            currentHourIndex = i;
+                            break;
+                        }
+                    }
+
+                    if (currentHourIndex !== -1) {
+                        const temperature = Math.round(data.hourly.temperature_2m[currentHourIndex]);
+                        const weatherCode = data.hourly.weathercode[currentHourIndex];
+
+                        weatherText.textContent = `${temperature}°C, ${mapWeatherCondition(weatherCode)}`;
+                        icon.className = `fas ${mapWeatherIcon(weatherCode)} icon`;
+                    } else {
+                        throw new Error('Current hour weather data not available in response for today.');
+                    }
                 } else {
-                    localStorage.setItem('theme', 'light');
-                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                    throw new Error('Hourly weather data structure not found or incomplete in response.');
                 }
-            });
 
-            // Apply saved theme on load
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-                themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-            } else {
-                themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+                let errorMessage = 'Unable to load weather.';
+                weatherText.textContent = errorMessage;
+                icon.className = 'fas fa-exclamation-triangle icon';
             }
         }
 
-        // Modal Functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const modalOpenButtons = document.querySelectorAll('[data-modal-target]');
-            const modalCloseButtons = document.querySelectorAll('.modal-close-btn');
-            const modals = document.querySelectorAll('.modal-overlay');
+        // Helper to map weathercode to a human-readable condition string
+        function mapWeatherCondition(code) {
+            switch (code) {
+                case 0: return 'Clear sky';
+                case 1: return 'Mainly clear';
+                case 2: return 'Partly cloudy';
+                case 3: return 'Overcast';
+                case 45:
+                case 48: return 'Fog';
+                case 51:
+                case 53:
+                case 55: return 'Drizzle';
+                case 56:
+                case 57: return 'Freezing Drizzle';
+                case 61:
+                case 63:
+                case 65: return 'Rain';
+                case 66:
+                case 67: return 'Freezing Rain';
+                case 71:
+                case 73:
+                case 75: return 'Snow fall';
+                case 77: return 'Snow grains';
+                case 80:
+                case 81:
+                case 82: return 'Rain showers';
+                case 85:
+                case 86: return 'Snow showers';
+                case 95:
+                case 96:
+                case 99: return 'Thunderstorm';
+                default: return 'Unknown';
+            }
+        }
 
-            modalOpenButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const modal = document.getElementById(button.dataset.modalTarget);
-                    if (modal) {
-                        modal.classList.add('active');
-                        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-                    }
-                });
-            });
 
-            modalCloseButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const modal = button.closest('.modal-overlay');
-                    if (modal) {
-                        modal.classList.remove('active');
-                        document.body.style.overflow = ''; // Restore scrolling
-                    }
-                });
-            });
-
-            modals.forEach(modal => {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) { // Close if clicking on the overlay, not the content
-                        modal.classList.remove('active');
-                        document.body.style.overflow = ''; // Restore scrolling
-                    }
-                });
-            });
-
-            // Birthday Notification
-            const birthdayNotification = document.getElementById('birthdayNotification');
-            const closeBirthdayNotification = document.getElementById('closeBirthdayNotification');
-            const birthdayMessage = document.getElementById('birthdayMessage');
-
-            // Example: Show a birthday notification after a delay (replace with actual logic)
-            setTimeout(() => {
-                if (birthdayNotification && birthdayMessage) {
-                    birthdayMessage.textContent = "Happy Birthday, UsRemind! 🎉";
-                    birthdayNotification.classList.add('show');
+        function initializeWeather() {
+            if (!navigator.geolocation) {
+                console.warn("Geolocation not supported by this browser. Falling back to default location.");
+                fetchWeather(DEFAULT_LAT, DEFAULT_LON); // Default to Kentucky
+                return;
+            }
+            navigator.geolocation.getCurrentPosition(
+                pos => fetchWeather(pos.coords.latitude, pos.coords.longitude),
+                () => {
+                    console.warn("Geolocation permission denied or failed. Falling back to default location.");
+                    fetchWeather(DEFAULT_LAT, DEFAULT_LON); // Fallback to Kentucky
                 }
-            }, 5000); // Shows after 5 seconds
+            );
+        }
 
-            if (closeBirthdayNotification) {
-                closeBirthdayNotification.addEventListener('click', () => {
-                    if (birthdayNotification) {
-                        birthdayNotification.classList.remove('show');
+        // Helper function for getting upcoming birthdays content
+        function getUpcomingBirthdays() {
+            const today = new Date();
+            const currentMonth = today.getMonth(); // 0-indexed
+            const currentDay = today.getDate();
+
+            // Sort birthdays to show upcoming ones first
+            const sortedBirthdays = [...birthdays].sort((a, b) => {
+                const dateA = new Date(today.getFullYear(), a.month, a.day);
+                const dateB = new Date(today.getFullYear(), b.month, b.day);
+
+                // If birthday has passed this year, consider next year
+                if (dateA < today && (a.month < currentMonth || (a.month === currentMonth && a.day < currentDay))) {
+                    dateA.setFullYear(today.getFullYear() + 1);
+                }
+                if (dateB < today && (b.month < currentMonth || (b.month === currentMonth && b.day < currentDay))) {
+                    dateB.setFullYear(today.getFullYear() + 1);
+                }
+                return dateA - dateB;
+            });
+
+            let content = '<h4>Upcoming Birthdays:</h4>';
+            if (sortedBirthdays.length === 0) {
+                content += '<p>No upcoming birthdays found.</p>';
+            } else {
+                content += '<ul>';
+                sortedBirthdays.forEach(b => {
+                    const birthdayDate = new Date(today.getFullYear(), b.month, b.day);
+                    if (birthdayDate < today && (b.month < currentMonth || (b.month === currentMonth && b.day < currentDay))) {
+                        birthdayDate.setFullYear(today.getFullYear() + 1); // Adjust for next year if already passed
                     }
+
+                    // Calculate difference more precisely for future dates
+                    const msPerDay = 1000 * 60 * 60 * 24;
+                    const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+                    const birthdayMidnight = new Date(birthdayDate.getFullYear(), birthdayDate.getMonth(), birthdayDate.getDate()).getTime();
+
+                    const diffDays = Math.round( (birthdayMidnight - todayMidnight) / msPerDay );
+
+                    const options = { month: 'long', day: 'numeric' };
+                    const formattedDate = birthdayDate.toLocaleDateString('en-US', options);
+
+                    if (diffDays === 0) {
+                         content += `<li><strong>${b.name}</strong> - Today! 🎉</li>`;
+                    } else if (diffDays === 1) {
+                         content += `<li><strong>${b.name}</strong> - Tomorrow!</li>`;
+                    } else if (diffDays > 1) {
+                         content += `<li><strong>${b.name}</strong> - ${formattedDate} (in ${diffDays} days)</li>`;
+                    } else {
+                        // This case should ideally not be hit with the sorting and year adjustment,
+                        // but it's a fallback for past birthdays within the current year if logic needs fine-tuning.
+                        content += `<li><strong>${b.name}</strong> - ${formattedDate} (already passed this year)</li>`;
+                    }
+                });
+                content += '</ul>';
+            }
+            return content;
+        }
+
+        // --- Daily Message ---
+        function setDailyMessage() {
+            const span = document.getElementById('dailyMessage');
+            if (!span) return;
+            const today = new Date();
+            const startOfYear = new Date(today.getFullYear(), 0, 0);
+            const diff = today - startOfYear;
+            const oneDay = 1000 * 60 * 60 * 24;
+            const dayOfYear = Math.floor(diff / oneDay);
+
+            const index = dayOfYear % messages.length;
+            span.textContent = messages[index];
+        }
+
+        // --- Birthday Check ---
+        function checkBirthdayToday() {
+            const today = new Date();
+            const match = birthdays.filter(b => b.month === today.getMonth() && b.day === today.getDate());
+            const banner = document.getElementById('birthdayNotification');
+            const message = document.getElementById('birthdayMessage');
+
+            if (banner && message) {
+                if (match.length > 0) {
+                    message.textContent = `Happy Birthday, ${match.map(b => b.name).join(' and ')}! 🎂`;
+                    banner.classList.add('show');
+                } else {
+                    banner.classList.remove('show');
+                }
+            }
+        }
+
+        // --- Modal Logic ---
+        function openModal(id, content = '') {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+            const body = modal.querySelector('.modal-body');
+            if (body && content) body.innerHTML = content;
+            modal.classList.add('show');
+            document.body.classList.add('no-scroll');
+        }
+
+        function closeModal(modal) {
+            if (!modal) return;
+            modal.classList.remove('show');
+            document.body.classList.remove('no-scroll');
+        }
+
+        function initializeModals() {
+            document.querySelectorAll('[data-modal-target]').forEach(btn => {
+                btn.addEventListener('click', e => {
+                    e.preventDefault();
+                    const id = btn.dataset.modalTarget;
+                    if (id === 'upcomingBirthdaysModal') {
+                        openModal(id, getUpcomingBirthdays());
+                    } else if (id === 'calendarModal') {
+                        openModal(id, `<p>Ethiopian and International holidays coming soon... 🎉</p>`);
+                    } else {
+                        openModal(id);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.addEventListener('click', e => {
+                    if (e.target === modal || e.target.closest('.modal-close-btn')) {
+                        closeModal(modal);
+                    }
+                });
+            });
+
+            // Moved keydown listener here to handle both modals and expanded cards
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') {
+                    const openModalElement = document.querySelector('.modal-overlay.show');
+                    const openCardElement = document.querySelector('.card.is-expanded');
+                    if (openModalElement) {
+                        closeModal(openModalElement);
+                    } else if (openCardElement) {
+                        closeExpandedCard(openCardElement);
+                    }
+                }
+            });
+        }
+
+        // --- Clipboard & Share ---
+        function initializeCopyShare() {
+            const copyBtn = document.getElementById('copyBtn');
+            const shareBtn = document.getElementById('shareBtn');
+            const textSpan = document.getElementById('dailyMessage');
+
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => {
+                    const temp = document.createElement('textarea');
+                    temp.value = textSpan.textContent;
+                    document.body.appendChild(temp);
+                    temp.select();
+                    try {
+                        document.execCommand('copy');
+                        showMessage('Message copied!', 'success');
+                    } catch {
+                        showMessage('Could not copy message.', 'error');
+                    }
+                    document.body.removeChild(temp);
                 });
             }
-
-            // Share button logic (from your input)
-            const dailyMessageSpan = document.getElementById('dailyMessageSpan');
-            const shareBtn = document.getElementById('shareBtn');
 
             if (shareBtn) {
                 shareBtn.addEventListener('click', async () => {
-                    const text = dailyMessageSpan.textContent;
+                    const text = textSpan.textContent;
                     if (navigator.share) {
                         try {
-                            await navigator.share({
-                                title: 'UsRemind Message',
-                                text,
-                                url: window.location.href
-                            });
+                            await navigator.share({ title: 'UsRemind Message', text, url: window.location.href });
                         } catch (err) {
-                            if (err.name !== 'AbortError') {
-                                console.error('Failed to share:', err);
-                                showMessage('Failed to share message.', 'error');
-                            }
+                            if (err.name !== 'AbortError') showMessage('Failed to share message.', 'error');
                         }
                     } else {
-                        showMessage('Web Share API not supported on this device. Please copy manually.', 'info');
+                        showMessage('Web Share API not supported. Please copy manually.', 'info');
                     }
                 });
             }
+        }
 
-            // 🖱️ Custom Cursor Logic (from your input)
-            const customCursor = document.querySelector('.custom-cursor');
-            if (customCursor) {
-                // Make sure the custom cursor is visible
-                customCursor.style.display = 'block'; // Ensure it's visible when JS starts
-                document.addEventListener('mousemove', (e) => {
-                    if (window.innerWidth > 768) { // Only show/move on wider screens
-                        customCursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-                    } else {
-                         customCursor.style.display = 'none'; // Hide on smaller screens
-                    }
-                });
-                // Also hide if window resizes to smaller
-                window.addEventListener('resize', () => {
-                    if (window.innerWidth <= 768) {
-                        customCursor.style.display = 'none';
-                    } else {
-                        customCursor.style.display = 'block';
-                    }
-                });
+        // --- Custom Cursor ---
+        function initializeCursor() {
+            const cursor = document.querySelector('.custom-cursor');
+            if (!cursor) return;
+            cursor.style.display = 'block';
+
+            document.addEventListener('mousemove', e => {
+                cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            });
+        }
+
+        // --- Card Expansion ---
+        const cardExpansionOverlay = document.getElementById('cardExpansionOverlay'); // Get the overlay element
+
+        function expandCard(card) {
+            // If the clicked card is already expanded, close it
+            if (card.classList.contains('is-expanded')) {
+                closeExpandedCard(card);
+                return;
             }
 
-            // 🃏 Card Expansion Logic (from your input)
+            // Close any other currently expanded card before expanding a new one
+            const currentlyExpanded = document.querySelector('.card.is-expanded');
+            if (currentlyExpanded) {
+                closeExpandedCard(currentlyExpanded);
+            }
+
+            card.classList.add('is-expanded');
+            document.body.classList.add('no-scroll');
+            if (cardExpansionOverlay) cardExpansionOverlay.classList.add('show'); // Show overlay
+
+            // No need for a specific click listener on the card itself for closing,
+            // as the overlay and escape key will handle it.
+        }
+
+        function closeExpandedCard(card) {
+            if (!card) return;
+            card.classList.remove('is-expanded');
+            document.body.classList.remove('no-scroll');
+            if (cardExpansionOverlay) cardExpansionOverlay.classList.remove('show'); // Hide overlay
+        }
+
+        function initializeCardExpansion() {
             document.querySelectorAll('.grid-container .card').forEach(card => {
-                card.addEventListener('click', (event) => {
-                    if (event.target.closest('button') || event.target.closest('a')) {
+                card.addEventListener('click', e => {
+                    // Prevent card expansion if an interactive element (button/link) inside was clicked
+                    if (e.target.closest('button') || e.target.closest('a')) {
                         return;
                     }
                     expandCard(card);
                 });
             });
-        }); // End DOMContentLoaded
+
+            // Add event listener to the overlay to close the expanded card
+            if (cardExpansionOverlay) {
+                cardExpansionOverlay.addEventListener('click', (e) => {
+                    // Ensure click is on the overlay itself, not content within it that might bubble up
+                    if (e.target === cardExpansionOverlay) {
+                        const openCard = document.querySelector('.card.is-expanded');
+                        if (openCard) {
+                            closeExpandedCard(openCard);
+                        }
+                    }
+                });
+            }
+        }
+
+        // --- Message Box Utility ---
+        function showMessage(message, type = 'info') {
+            const box = document.getElementById('customMessageBox');
+            const icon = document.getElementById('customMessageIcon');
+            const text = document.getElementById('customMessageText');
+
+            if (!box || !icon || !text) {
+                console.error("Custom message box elements not found.");
+                return;
+            }
+
+            text.textContent = message;
+            box.className = `message-box ${type}`;
+            icon.innerHTML = type === 'success' ? '<i class="fas fa-check-circle"></i>' :
+                            type === 'error' ? '<i class="fas fa-exclamation-circle"></i>' :
+                            '<i class="fas fa-info-circle"></i>';
+            box.classList.add('show');
+            setTimeout(() => box.classList.remove('show'), 3000);
+        }
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            setDailyMessage();
+            checkBirthdayToday();
+            initializeModals();
+            initializeCopyShare();
+            initializeCursor();
+            initializeCardExpansion();
+            initializeWeather(); // Call the new weather initialization function
+
+            const closeBannerBtn = document.getElementById('closeBirthdayNotification');
+            if (closeBannerBtn) {
+                closeBannerBtn.addEventListener('click', () => {
+                    document.getElementById('birthdayNotification')?.classList.remove('show');
+                });
+            }
+
+            // Theme Toggle logic
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    document.documentElement.classList.toggle('dark-mode');
+                    if (document.documentElement.classList.contains('dark-mode')) {
+                        localStorage.setItem('theme', 'dark');
+                        themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                    } else {
+                        localStorage.setItem('theme', 'light');
+                        themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                    }
+                });
+
+                // Apply saved theme on load
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark') {
+                    document.documentElement.classList.add('dark-mode');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    document.documentElement.classList.remove('dark-mode');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+            }
+        });
     </script>
 </body>
 </html>
